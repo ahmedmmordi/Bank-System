@@ -1,9 +1,9 @@
 public class Main {
     public static void main(String []Args) {
         Operations.InitialData();
-
         Operations.Menu();
-        int choice = Operations.cin.nextInt();
+
+        int choice = Operations.IsValidChoice();
         switch(choice) {
             case 1: {
                 Operations.Open_NewAccount();
@@ -12,20 +12,17 @@ public class Main {
                 break;
             }
             case 2: {
-                System.out.print("- Enter the ID of the customer you want to search about: ");
-                int ID = Operations.cin.nextInt();
+                int ID = Operations.IsValidID();
                 Operations.Search(ID);
                 break;
             }
             case 3: {
-                System.out.print("- Enter the ID of the customer: ");
-                int ID = Operations.cin.nextInt();
+                int ID = Operations.IsValidID();
                 Operations.Deposit(ID);
                 break;
             }
             case 4: {
-                System.out.print("- Enter the ID of the customer: ");
-                int ID = Operations.cin.nextInt();
+                int ID = Operations.IsValidID();
                 Operations.Withdraw(ID);
                 break;
             }
@@ -35,13 +32,10 @@ public class Main {
                 break;
             }
             case 6: {
-                Operations.cin.close();
                 break;
             }
-            default: {
-                System.out.println("Invalid choice, Please try again.");
-            }
         }
+
         System.out.println("Thanks for using our system.");
         try {
             Thread.sleep(15000);

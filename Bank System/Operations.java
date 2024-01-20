@@ -26,7 +26,67 @@ public class Operations {
         System.out.println("4- Withdraw.");
         System.out.println("5- Display all accounts details.");
         System.out.println("6- Exit.");
-        System.out.print("Enter your choice: ");
+    }
+
+    // Method to check the given choice
+    protected static int IsValidChoice() {
+        int choice = 0;
+        do {
+            System.out.print("Enter your choice: ");
+            try {
+                choice = Operations.cin.nextInt();
+                if (!(choice>=1 && choice<=6)) {
+                    System.out.println("Invalid input. Please enter a number from 1 and 6.");
+                }
+            }
+            catch (Exception except) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                Operations.cin.nextLine();
+            }
+        } while (!(choice>=1 && choice<=6));
+        return choice;
+    }
+
+    // Method to check the given ID
+    protected static int IsValidID() {
+        int ID = 0;
+        do {
+            System.out.print("- Enter the ID of the customer: ");
+            try {
+                ID = Operations.cin.nextInt();
+                if (ID<=0) {
+                    System.out.println("Invalid input. the IDs are only positive numbers.");
+                }
+            }
+            catch (Exception except) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                Operations.cin.nextLine();
+            }
+        } while (ID<=0);
+        return ID;
+    }
+
+    // Method to check the given amount
+    protected static double IsValidAmount() {
+        boolean Valid = false;
+        double amount = 0.0;
+        do {
+            System.out.print("      - Enter the amount: ");
+            try {
+                amount = Operations.cin.nextDouble();
+                if (amount>0) {
+                    Valid = true;
+                }
+                else {
+                    System.out.println("Invalid input. The amount should be a non-negative number.");
+                }
+            }
+            catch (Exception except) {
+                System.out.println("Invalid input. Please enter a valid amount.");
+                Operations.cin.nextLine();
+            }
+        } while (!Valid);
+        return amount;
     }
 
     // Method to open a new account in the system
@@ -39,8 +99,7 @@ public class Operations {
         New_Acc.SetName(Name);
         boolean InitialBalance = Operations.SetInitialBalance();
         if (InitialBalance==true) {
-            System.out.print("      - Enter an amount: ");
-            double amount = Operations.cin.nextDouble();
+            double amount = Operations.IsValidAmount();
             New_Acc.Deposit(amount);
         }
         Accounts.add(New_Acc);
@@ -107,8 +166,8 @@ public class Operations {
     protected static void Deposit(int ID) {
         for(Account account : Accounts) {
             if(account.GetID()==ID) {
-                System.out.print("  - Enter the amount you want to deposit: ");
-                double Amount = cin.nextDouble();
+                // System.out.print("  - Enter the amount you want to deposit: ");
+                double Amount = Operations.IsValidAmount();
                 account.Deposit(Amount);
                 return;
             }
@@ -120,8 +179,8 @@ public class Operations {
     protected static void Withdraw(int ID) {
         for(Account account : Accounts) {
             if(account.GetID()==ID) {
-                System.out.print("  - Enter the amount you want to withdraw: ");
-                double Amount = cin.nextDouble();
+                // System.out.print("  - Enter the amount you want to withdraw: ");
+                double Amount = Operations.IsValidAmount();
                 account.Withdraw(Amount);
                 return;
             }

@@ -9,7 +9,6 @@ public abstract class Account {
     // Constructors
     // Default constructor
     protected Account() {
-        this.ID = Counter++;
         this.Name = "UnKnown";
         this.Type = "Unknown";
         this.Balance = 0.0;
@@ -17,7 +16,6 @@ public abstract class Account {
 
     // Parameterized constructor
     protected Account(String type) {
-        this.ID = Counter++;
         this.Name = "UnKnown";
         this.Type = type;
         this.Balance = 0.0;
@@ -25,7 +23,6 @@ public abstract class Account {
 
     // Parameterized constructor
     protected Account(String name, String type, double balance) {
-        this.ID = Counter++;
         this.Name = name;
         this.Type = type;
         this.Balance = balance;
@@ -33,7 +30,6 @@ public abstract class Account {
 
     // Parameterized constructor (Copy constructor)
     protected Account(Account base) {
-        this.ID = Counter++;
         this.Name = base.Name;
         this.Type = base.Type;
         this.Balance = base.Balance;
